@@ -16,9 +16,7 @@ function App(props) {
       key = {task.id}
     />
     
-  }) 
-
-  
+  })   
 
   function addTask(name) {
     const newTask = {id: "todo-" + nanoid(), name: name, completed: false};
@@ -26,8 +24,8 @@ function App(props) {
     setTasks([...tasks, newTask]);  
     console.log(tasks)  
   }
-
-  
+  const nounHeading = (tasks.length !== 1)? "tasks": "task"
+  const headingTasks = ` ${tasks.length} ${nounHeading} remaining`
 
   return (
     <div className="todoapp stack-large">
@@ -40,7 +38,7 @@ function App(props) {
         
       </div>
       <h2 id="list-heading">
-        3 tasks remaining
+       {headingTasks}
       </h2>
       <ul
         role="list"
