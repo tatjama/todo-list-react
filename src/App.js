@@ -14,6 +14,7 @@ function App(props) {
       name = {task.name}      
       completed = {task.completed}
       key = {task.id}
+      toggleTaskCompleted = {toggleTaskCompleted}
     />
     
   })   
@@ -24,8 +25,19 @@ function App(props) {
     setTasks([...tasks, newTask]);  
     console.log(tasks)  
   }
-  const nounHeading = (tasks.length !== 1)? "tasks": "task"
-  const headingTasks = ` ${tasks.length} ${nounHeading} remaining`
+  const nounHeading = (tasks.length !== 1)? "tasks": "task";
+  const headingTasks = ` ${tasks.length} ${nounHeading} remaining`;
+
+  function toggleTaskCompleted(id) {
+    const updateTaskComplete = tasks.map((task)=>{
+      if(id === task.id){
+        return{...task, completed: !task.completed }
+      }
+      return task
+    });
+    setTasks(updateTaskComplete);
+
+  }
 
   return (
     <div className="todoapp stack-large">
